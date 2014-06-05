@@ -5,6 +5,16 @@ var HashTable = function(){
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
+  if(!this._storage[i]){
+
+    var bucket = makeLinkedList();
+
+    bucket.addToTail({k : v});
+    this._storage[i] = bucket;
+  } else {
+    this._storage[i].addToTail({k:v});
+  }
+
 };
 
 HashTable.prototype.retrieve = function(k){
@@ -15,7 +25,6 @@ HashTable.prototype.retrieve = function(k){
 HashTable.prototype.remove = function(k){
 
 };
-
 
 
 /*
