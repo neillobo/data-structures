@@ -34,6 +34,25 @@ define([
 
       verifyClass(instantiator).followsPattern(variant, {}, prototypeOfInstances);
 
+      // it('should go really fast', function(){
+      //   for(var i = 0; i < 100000000; i++){
+      //     stack.push(i);
+      //     stack.pop();
+      //   }
+      //   expect(stack.size()).to.equal(0);
+      // });
+
+      it('it should instantiate quickly', function(){
+        for(var i=0; i<10000000; i++){
+          if(variant === 'pseudoclassical'){
+            stack = new instantiator();
+          } else {
+            stack = instantiator();
+          }
+        }
+
+      });
+
       it('reports a size of zero for a new stack', function() {
         expect(stack.size()).to.equal(0);
       });
