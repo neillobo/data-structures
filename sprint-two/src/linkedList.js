@@ -51,6 +51,23 @@ var makeLinkedList = function(){
     return found;
   };
 
+  list.find = function(target, callback){
+   var result;
+    var current = list.head;
+
+    while (current!== null && !result){
+
+      if (callback(current.value)){
+         result = current.value;
+      }
+      current = current.next;
+
+    }
+
+    return result;
+
+  };
+
   return list;
 };
 
