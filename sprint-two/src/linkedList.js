@@ -68,6 +68,24 @@ var makeLinkedList = function(){
 
   };
 
+  list.deleteListItem = function (deleteItem) {
+
+    if (list.head.next === null) {
+      list.head = null;
+      return;
+    }
+
+    var current = list.head;
+
+    while (current.next !== null) {
+      if (current.next.value === deleteItem) {
+        current.next = current.next.next;
+      } else {
+        current = current.next;
+      }
+    }
+  };
+
   return list;
 };
 

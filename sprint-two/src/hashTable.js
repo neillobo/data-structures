@@ -25,13 +25,8 @@ HashTable.prototype.retrieve = function(findKey){
   var i = getIndexBelowMaxForKey(findKey, this._limit);
   if (this._storage[i]){
     var found = this._storage[i].find(findKey, function(value) {
-      if(value.hasOwnProperty(findKey)){
-        return true;
-      } else {
-        return false;
-      }
+      return value.hasOwnProperty(findKey);
     });
-    // debugger;
     if(found){
       return found[findKey];
     } else {
@@ -40,7 +35,18 @@ HashTable.prototype.retrieve = function(findKey){
   }
 };
 
-HashTable.prototype.remove = function(k){
+HashTable.prototype.remove = function(deleteKey){
+  //use find function to find the full value (object) (ItemToBeRemoved)
+  var i = getIndexBelowMaxForKey(deleteKey, this._limit);
+  if (this._storage[i]){
+    var removeItem = this._storage[i].find(deleteKey, function(value) {
+      return value.hasOwnProperty(deleteKey);
+    });
+  }
+  if (removeItem) {
+    //pass removeItem into linked list's remove function
+    this._storage[i].deleteListItem(removeItem);
+  }
 
 };
 
