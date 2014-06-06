@@ -1,10 +1,18 @@
 var Graph = function(){
+	this._storage = {};
+
 };
 
 Graph.prototype.addNode = function(newNode, toNode){
+	var newArr = [];
+	if (toNode) { 
+		newArr.push(toNode);
+	} 
+	this._storage[newNode] = newArr;
 };
 
 Graph.prototype.contains = function(node){
+		
 };
 
 Graph.prototype.removeNode = function(node){
